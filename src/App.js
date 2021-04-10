@@ -13,9 +13,7 @@ class App extends Component {
   hendleRequest = () => {
     const { addItem } = this.props;
     api.getInfo().then((data) => {
-      data.data.map((item) => {
-        addItem(item);
-      });
+        addItem(data.data);
     });
   };
   removeItem = () => {
