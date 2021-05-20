@@ -1,48 +1,72 @@
 import "./App.css";
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import React from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Main from "./components/Main";
-import Info from "./components/Info";
-import * as api from "./api/api";
-import { connect } from "react-redux";
-import { addItem } from "./actions/index";
-import { removeItem } from "./actions/index";
+import Form from "./components/Form";
+import FormEdite from "./components/FormEdit";
+import changeTime from "./utils/utils";
 
-class App extends Component {
-  state = {};
-  hendleRequest = () => {
-    const { addItem } = this.props;
-    api.getInfo().then((data) => {
-        addItem(data.data);
-    });
-  };
-  removeItem = () => {
-    const { removeItem } = this.props;
-    removeItem();
-  };
+const App = () => {
+  const [items, setItems] = React.useState([]);
+  const [filterItems, setFilterItems] = React.useState([]);
+  const [isDay, isClickDay] = React.useState(false);
+  const history = useHistory();
+  React.useEffect(() => {
+    const findItems = localStorage.getItem("items");
+    setItems(JSON.parse(findItems));
+  }, []);
 
-  render() {
-    const { items } = this.props;
-    return (
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <Main onChange={this.hendleRequest} onRemove={this.removeItem} />
-          </Route>
-          <Route path="/info">
-            <Info items={items} />
-          </Route>
-        </Switch>
-      </div>
-    );
+  function hendleAddItem(item) {
+    setItems([...items, item]);
+    localStorage.setItem("items", JSON.stringify([...items, item]));
+    history.push("/");
   }
-}
 
-const mapStateToProps = (state) => ({
-  items: state.items,
-});
-const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
-  removeItem: () => dispatch(removeItem()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+  function handleDeleteItem(toDoindex) {
+    const changeItems = items.filter((_, index) => index !== toDoindex);
+    setItems(changeItems);
+    localStorage.setItem("items", JSON.stringify(changeItems));
+  }
+
+  function handleUpdateItem(changeItem, index) {
+    const newItem = items.map((item, i) => {
+      if (i.toString() === index) {
+        item = { ...changeItem };
+      }
+      return item;
+    });
+    setItems(newItem);
+    localStorage.setItem("items", JSON.stringify(newItem));
+    history.push("/");
+  }
+
+  function filterItemsDate(day) {
+    const newFilterData = items.filter(
+      (item) => changeTime(item.date) === changeTime(day)
+    );
+    isClickDay(true);
+    setFilterItems(newFilterData);
+  }
+
+  return (
+    <div className="App">
+      <Switch>
+        <Route exact path="/">
+          <Main
+            items={isDay ? filterItems : items}
+            handleDeleteItem={handleDeleteItem}
+            filterItemsDate={filterItemsDate}
+          />
+        </Route>
+        <Route path="/form">
+          <Form onAddItem={hendleAddItem} />
+        </Route>
+        <Route path="/editeform/:index">
+          <FormEdite items={items} onEditeItem={handleUpdateItem} />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
+
+export default App;
