@@ -1,0 +1,47 @@
+.form {
+  width: 50%;
+  padding: 30px;
+  border: solid 1px rgb(119, 119, 119);
+  border-radius: 20px;
+  margin: 60px auto;
+  color: white;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  text-align: left;
+  &__lable {
+    color: black;
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  &__imput {
+    width: 100%;
+    padding: 5px 0;
+    border-radius: 5px;
+    border: solid 1px grey;
+  }
+  &__select {
+    width: 100%;
+    text-align-last: center;
+    padding: 5px 6px;
+    border-radius: 5px;
+    border: solid 1px grey;
+  }
+  &__button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  &__button {
+    background-color: white;
+    border: solid 1px grey;
+    padding: 6px 20px;
+    border-radius: 15px;
+  }
+}

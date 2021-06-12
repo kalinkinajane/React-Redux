@@ -1,10 +1,10 @@
-import "./App.css";
+import "./App.scss";
 import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
-import Main from "./components/Main";
-import Form from "./components/Form";
-import FormEdite from "./components/FormEdit";
-import changeTime from "./utils/utils";
+import Main from "../Main/Main";
+import Form from "../Form/Form";
+import FormEdite from "../Form/FormEdit";
+import changeTime from "../../utils/utils";
 
 const App = () => {
   const [items, setItems] = React.useState([]);
@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/TodoList">
           <Main
             items={isDay ? filterItems : items}
             handleDeleteItem={handleDeleteItem}

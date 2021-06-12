@@ -1,0 +1,106 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  &__calendar {
+    width: 45%;
+  }
+  &__button {
+    margin: 30px;
+    font-size: 26px;
+    border: solid 1px grey;
+    border-radius: 45px;
+    background-color: white;
+    padding: 10px 30px;
+  }
+  &__list {
+    width: 50%;
+    border: solid 1px grey;
+    border-radius: 15px;
+    box-sizing: border-box;
+  }
+}
+
+.react-calendar {
+  width: 100%;
+  border: solid 1px grey;
+  border-radius: 15px;
+  padding-bottom: 20px;
+  &__navigation {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    &__arrow {
+      border: none;
+      width: 30px;
+      background-color: white;
+      font-size: 20px;
+    }
+    &__label {
+      font-size: 20px;
+      text-transform: capitalize;
+      background-color: white;
+      border: none;
+    }
+  }
+  &__tile {
+    height: 50px;
+    background-color: white;
+    border: none;
+    font-size: 20px;
+  }
+  &__month-view__weekdays__weekday {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.active {
+  border: solid 1px #4b51e6;
+  border-radius: 60px;
+  background-color: #4b51e6;
+}
+
+.info {
+  width: 100%;
+  border-bottom: solid 1px grey;
+  padding: 10px;
+  text-align: start;
+  box-sizing: border-box;
+  position: relative;
+  &__title {
+    font-size: 18px;
+    color: rgb(140, 140, 236);
+    width: 100%;
+  }
+  &__type {
+    margin: 5px 0;
+  }
+  &__mesto {
+    margin: 5px 0;
+  }
+  &__time {
+    margin: 5px 0;
+  }
+  &__container {
+    display: block;
+    position: absolute;
+    right: 20px;
+  }
+  &__edit {
+    border: none;
+    background-color: white;
+    margin-right: 15px;
+  }
+  &__del {
+    border: none;
+    background-color: white;
+  }
+}
+.info:last-child {
+  border-bottom: none;
+}
+.info:hover .info__container {
+  cursor: pointer;
+  display: block;
+}
