@@ -1,7 +1,0 @@
-# Logs
-logs
-*.log
-public
-.vscode
-
-node_modules
