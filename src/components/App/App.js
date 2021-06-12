@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./App.css";
 import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Main from "../Main/Main";
