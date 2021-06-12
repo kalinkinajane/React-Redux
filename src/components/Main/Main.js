@@ -3,6 +3,20 @@ import Calendar from "react-calendar";
 import "./main.scss";
 import { Link } from "react-router-dom";
 
+const changeTime = (time) => {
+  const timeStamp = new Date(Date.parse(time));
+
+  var options = {
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const date = timeStamp.toLocaleString("ru", options);
+  const finishDate = date + ", " + timeStamp.getFullYear();
+  return finishDate;
+};
+
 function Main({ items, handleDeleteItem, filterItemsDate }) {
   const [value, onChange] = React.useState(new Date());
 
@@ -82,17 +96,3 @@ function Main({ items, handleDeleteItem, filterItemsDate }) {
   );
 }
 export default Main;
-
-const changeTime = (time) => {
-  const timeStamp = new Date(Date.parse(time));
-
-  var options = {
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  };
-  const date = timeStamp.toLocaleString("ru", options);
-  const finishDate = date + ", " + timeStamp.getFullYear();
-  return finishDate;
-};

@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/TodoList">
+        <Route path="/" exact>
           <Main
             items={isDay ? filterItems : items}
             handleDeleteItem={handleDeleteItem}
