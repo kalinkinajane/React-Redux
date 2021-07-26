@@ -41,7 +41,7 @@ function Main({ items, handleDeleteItem, filterItemsDate }) {
         </Link>
       </div>
       <div className="main__list">
-        {items.length === 0 ? null : items.map((item, index) => (
+        { !items && !items.length > 0 ? null : items.map((item, index) => (
           <div className="info" item={item} key={index.toString()}>
             <div className="info__container">
               <Link to={`editeform/${index}`}>
